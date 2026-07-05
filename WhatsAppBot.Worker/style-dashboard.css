@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --primary: #172033;
+    --primary-dark: #0f1728;
+    --blue: #2563eb;
+    --blue-dark: #1d4ed8;
+    --green: #059669;
+    --green-dark: #047857;
+    --yellow: #d97706;
+    --red: #dc2626;
+    --slate-50: #f8fafc;
+    --slate-100: #f1f5f9;
+    --slate-200: #e2e8f0;
+    --slate-400: #94a3b8;
+    --slate-500: #64748b;
+    --slate-600: #475569;
+    --slate-950: #0f172a;
+    --white: #ffffff;
+    --radius: 12px;
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:root.dark {
+    --primary: #cbd5e1;
+    --primary-dark: #94a3b8;
+    --slate-50: #020617;   /* Fundo Geral mais profundo */
+    --slate-100: #0f172a;  /* Soft Panels */
+    --slate-200: #1e293b;  /* Bordas sutis */
+    --slate-400: #94a3b8;
+    --slate-500: #64748b;
+    --slate-600: #94a3b8;
+    --slate-950: #f8fafc;  /* Texto Principal */
+    --white: #0f172a;      /* Fundo de Painéis */
+}
+
+/* Overrides para elementos Tailwind que usam classes fixas */
+:root.dark .bg-white { background-color: var(--white) !important; }
+:root.dark .bg-slate-50 { background-color: var(--slate-100) !important; }
+:root.dark .border-slate-200 { border-color: var(--slate-200) !important; }
+:root.dark .border-gray-200 { border-color: var(--slate-200) !important; }
+:root.dark .text-gray-950 { color: var(--slate-950) !important; }
+:root.dark .text-slate-950 { color: var(--slate-950) !important; }
+:root.dark .text-gray-700, :root.dark .text-gray-600, :root.dark .text-slate-700 { color: var(--slate-400) !important; }
+
+/* Melhorias específicas para a aba de Relatórios no Dark Mode */
+:root.dark .bg-emerald-50 { background-color: rgba(16, 185, 129, 0.15) !important; color: #34d399 !important; }
+:root.dark .bg-rose-50 { background-color: rgba(244, 63, 94, 0.15) !important; color: #fb7185 !important; }
+:root.dark .bg-slate-100, :root.dark select.bg-slate-100 { 
+    background-color: var(--slate-200) !important; 
+    color: var(--slate-950) !important;
+}
+:root.dark .hover\:bg-slate-100:hover { 
+    background-color: var(--slate-200) !important; 
+}
+
+:root.dark body {
+    background: radial-gradient(circle at 0% 0%, #111827 0%, #020617 100%) !important;
+    background-attachment: fixed;
+}
+
+:root.dark .sidebar {
+    background: rgba(15, 23, 42, 0.85) !important;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-right: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+* { transition: var(--transition); scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+body { background: var(--slate-50); color: var(--slate-950); font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+
+/* Ajuste global para classes utilitárias do Tailwind no Dark Mode */
+:root.dark .text-gray-950, :root.dark .text-gray-800 { color: var(--slate-950) !important; }
+:root.dark .text-gray-600, :root.dark .text-gray-500 { color: var(--slate-400) !important; }
+
+.app-shell { min-height: 100vh; }
+.panel { background: var(--white); border: 1px solid var(--slate-200); border-radius: var(--radius); animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05); will-change: transform, opacity; }
+.soft-panel { background: var(--slate-50); border: 1px solid var(--slate-100); border-radius: var(--radius); }
+
+.nav-item { color: var(--slate-500); border-radius: 8px; cursor: pointer; font-weight: 500; }
+.nav-item:hover { background: var(--slate-100); color: var(--slate-950); }
+.nav-item.active { background: var(--slate-100); color: var(--slate-950); border: 1px solid var(--slate-200); }
+
+.status-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+.status-dot.pulse { animation: pulseDot 2s infinite; }
+.input-field { width: 100%; border: 1px solid #d8dde8; border-radius: 8px; padding: 10px 12px; background: var(--white); outline: none; }
+
+:root.dark .input-field {
+    border-color: var(--slate-200);
+    background-color: var(--slate-50);
+    color: var(--slate-950);
+}
+.input-field:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12); transform: translateY(-2px); }
+
+.btn { border-radius: 8px; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; }
+.btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); }
+.btn:active:not(:disabled) { transform: translateY(0); }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
+
+.btn-primary { background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: var(--white); }
+.btn-blue { background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%); color: var(--white); }
+.btn-green { background: linear-gradient(135deg, var(--green) 0%, var(--green-dark) 100%); color: var(--white); }
+.btn-yellow { background: linear-gradient(135deg, var(--yellow) 0%, #b45309 100%); color: var(--white); }
+.btn-red { background: linear-gradient(135deg, var(--red) 0%, #b91c1c 100%); color: var(--white); }
+.btn-light { background: #eef2f7; color: #1f2937; border: 1px solid #d8dde8; }
+
+:root.dark .btn-light {
+    background: var(--slate-200);
+    color: var(--slate-950);
+    border-color: var(--slate-100);
+}
+
+.view { display: none; opacity: 0; }
+.view.active { display: block; animation: fadeIn 0.4s ease-out forwards; }
+.sidebar { background: var(--white); border-right: 1px solid var(--slate-200); animation: slideInLeft 0.3s ease-out; }
+
+/* --- Novas Classes para Admin/Barbeiro --- */
+
+/* Monitoramento em Tempo Real (Superadmin) */
+.live-status-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--slate-500);
+    margin-bottom: 16px;
+}
+
+.infra-badge {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    background: var(--slate-100);
+    border: 1px solid var(--slate-200);
+}
+:root.dark .infra-badge { background: var(--slate-200); color: var(--slate-950); }
+
+.pulse-green { color: var(--green); animation: pulseOpacity 2s infinite; }
+.pulse-red { color: var(--red); animation: pulseOpacity 1.5s infinite; }
+
+@keyframes pulseOpacity {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.1); }
+}
+
+/* Superadmin: Store Command Center */
+.store-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+.store-card { 
+    padding: 24px; 
+    background: var(--white); 
+    border: 1px solid var(--slate-200); 
+    border-radius: var(--radius); 
+    position: relative;
+    transition: var(--transition);
+}
+.store-card:hover { transform: scale(1.02); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); }
+.store-card .store-name { font-size: 1.125rem; font-weight: 800; color: var(--slate-950); margin-bottom: 4px; }
+.store-status-badge { position: absolute; top: 12px; right: 12px; font-size: 10px; padding: 4px 8px; border-radius: 99px; text-transform: uppercase; font-weight: 800; }
+.store-revenue-pill { background: var(--slate-50); padding: 8px 12px; border-radius: 8px; display: flex; justify-content: space-between; align-items: center; margin-top: 12px; }
+:root.dark .store-revenue-pill { background: var(--slate-200); }
+
+/* Global Analytics */
+.global-stats-header { background: linear-gradient(135deg, var(--primary) 0%, #1e293b 100%); color: white; padding: 32px; border-radius: var(--radius); margin-bottom: 32px; position: relative; overflow: hidden; }
+.global-stats-header::after { content: 'SUPERADMIN'; position: absolute; top: -10px; right: -10px; font-size: 80px; font-weight: 900; opacity: 0.05; pointer-events: none; }
+.global-value { font-size: 2.5rem; font-weight: 900; letter-spacing: -0.02em; }
+
+/* Estrutura de Filtros de Relatório */
+.report-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 20px;
+    background: var(--slate-50);
+    border-radius: var(--radius);
+    margin-bottom: 24px;
+    align-items: flex-end;
+    border: 1px solid var(--slate-100);
+}
+:root.dark .report-filters { background: var(--slate-100); border-color: var(--slate-200); }
+
+/* Tabelas de Dados Profissionais */
+.report-table-container {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: var(--radius);
+    border: 1px solid var(--slate-200);
+    background: var(--white);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.report-table { width: 100%; border-collapse: collapse; min-width: 700px; }
+.report-table th { 
+    padding: 14px 16px; 
+    text-align: left; 
+    font-size: 0.7rem; 
+    font-weight: 700; 
+    text-transform: uppercase; 
+    letter-spacing: 0.05em;
+    color: var(--slate-500); 
+    border-bottom: 2px solid var(--slate-100);
+    background: var(--slate-50);
+    position: sticky;
+    top: 0;
+}
+:root.dark .report-table th { background: var(--slate-100); border-bottom-color: var(--slate-200); }
+
+.report-table td { padding: 14px 16px; border-bottom: 1px solid var(--slate-100); font-size: 0.875rem; color: var(--slate-600); }
+:root.dark .report-table td { border-bottom-color: var(--slate-200); color: var(--slate-400); }
+.report-table tr:hover td { background: rgba(37, 99, 235, 0.04); }
+
+/* Indicadores de Tendência (Up/Down) */
+.trend-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 10px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+.trend-up { background: #dcfce7; color: #166534; }
+.trend-down { background: #fee2e2; color: #991b1b; }
+:root.dark .trend-up { background: rgba(22, 101, 52, 0.2); color: #4ade80; }
+:root.dark .trend-down { background: rgba(153, 27, 27, 0.2); color: #f87171; }
+
+/* Grid de KPIs: Para o barbeiro ver faturamento e agendamentos rápido */
+.kpi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 16px; margin-bottom: 24px; }
+.kpi-card { padding: 20px; border-radius: var(--radius); background: var(--white); border: 1px solid var(--slate-200); position: relative; overflow: hidden; transition: var(--transition); }
+.kpi-card:hover { transform: translateY(-3px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+.kpi-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--blue); border-radius: 4px 0 0 4px; }
+.kpi-value { font-size: 1.75rem; font-weight: 800; color: var(--slate-950); line-height: 1; }
+.kpi-label { font-size: 0.75rem; color: var(--slate-500); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; margin-bottom: 4px; display: block; }
+
+/* Indicador de Urgência: Destaca clientes que chegam em menos de 30min */
+.border-urgent { border-left: 5px solid var(--red) !important; animation: pulseUrgent 2s infinite; }
+@keyframes pulseUrgent { 
+    0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); } 
+    70% { box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); } 
+    100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); } 
+}
+
+/* Status do Robô: Visual mais profissional para o Bridge */
+.bridge-status-widget { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 8px; background: var(--slate-50); border: 1px solid var(--slate-200); }
+:root.dark .bridge-status-widget { background: var(--slate-200); }
+
+/* Efeito de Carregamento (Shimmer) */
+.skeleton { background: linear-gradient(90deg, var(--slate-100) 25%, var(--slate-200) 50%, var(--slate-100) 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; border-radius: 4px; }
+@keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* Mobile Quick Actions */
+.fab-container { position: fixed; bottom: 24px; right: 24px; display: flex; flex-direction: column; gap: 12px; z-index: 50; }
+@media (min-width: 1024px) { .fab-container { display: none; } }
+
+/* ----------------------------------------- */
+
+.toggle-checkbox:checked + .toggle-label { background-color: var(--blue); }
+.notification-center-badge::after { content: attr(data-count); position: absolute; top: -8px; right: -8px; background: var(--red); color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; box-shadow: 0 0 0 2px var(--white); }
+
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideInLeft { from { opacity: 0; transform: translate3d(-20px, 0, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+@keyframes pulseDot { 0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(37, 99, 235, 0); } 100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); } }
+@keyframes badgePulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+@keyframes slideInNotification { from { opacity: 0; transform: translate3d(100%, 0, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
+@keyframes slideOutNotification { from { opacity: 1; transform: translate3d(0, 0, 0); } to { opacity: 0; transform: translate3d(100%, 0, 0); } }
+
+.toast { animation: slideInNotification 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.toast.exit { animation: slideOutNotification 0.3s ease-in; }
+.badge-pulse { animation: badgePulse 0.5s ease-in-out; }
+.pulse { animation: pulse 2s infinite; }
+
+.appointment-card { transition: var(--transition); cursor: pointer; }
+.appointment-card:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1); }
+
+@media (max-width: 1023px) {
+    .sidebar { border-right: 0; border-bottom: 1px solid #e6e8ef; }
+    .panel { margin: 8px; }
+    .kpi-grid { grid-template-columns: 1fr 1fr; }
+    .mobile-hidden { display: none !important; }
+    .app-shell { grid-template-columns: 1fr !important; }
+}
+
+.loader-spinner { animation: spin 1s linear infinite; }
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
